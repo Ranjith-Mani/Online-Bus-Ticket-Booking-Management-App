@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Bus</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center">Update Bus Information</h2>
+    <a th:href="@{/admin-buses}" class="btn btn-primary mb-3">Back to Bus List</a>
+
+    <!-- Single Form for Updating Bus -->
+    <form th:action="@{/admin-buses/edit/{id}(id=${bus.id})}" th:object="${bus}" method="post">
+        <div class="mb-3">
+            <label for="busNumber" class="form-label">Bus Number</label>
+            <input name="busNumber" th:field="*{busNumber}" type="text" class="form-control" id="busNumber" placeholder="Enter bus number" autocomplete="off" required="required">
+        </div>
+
+        <div class="mb-3">
+            <label for="busDriverName" class="form-label">Bus Driver Name</label>
+            <input name="busDriverName" th:field="*{busDriverName}" type="text" class="form-control" id="busDriverName" placeholder="Enter bus driver name" autocomplete="off" required="required">
+        </div>
+
+        <div class="mb-3">
+            <label for="busType" class="form-label">Bus Type</label>
+            <input name="busType" th:field="*{busType}" type="text" class="form-control" id="busType" placeholder="Enter bus type" autocomplete="off" required="required">
+        </div>
+
+        <div class="mb-3">
+            <label for="routes" class="form-label">Routes</label>
+            <input name="routes" th:field="*{routes}" type="text" class="form-control" id="routes" placeholder="Enter bus routes" autocomplete="off" required="required">
+        </div>
+
+        <div class="mb-3">
+            <label for="availableSeats" class="form-label">Available Seats</label>
+            <input name="availableSeats" th:field="*{availableSeats}" type="number" class="form-control" id="availableSeats" placeholder="Enter number of seats" autocomplete="off" required="required">
+        </div>
+
+        <div class="mb-3">
+            <label for="passenger" class="form-label">Passenger</label>
+            <select name="passenger" th:field="*{passenger}" class="form-control" id="passenger" required>
+                <option value="" disabled selected>Select a passenger</option>
+                <option th:each="passenger : ${passengers}" th:value="${passenger.id}" th:text="${passenger.firstName + ' ' + passenger.lastName}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="admin" class="form-label">Admin</label>
+            <select name="admin" th:field="*{admin}" class="form-control" id="admin" required="required">
+                <option value="" disabled selected>Select an admin</option>
+                <option th:each="admin : ${admins}" th:value="${admin.id}" th:text="${admin.name}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Update Bus</button>
+            <a th:href="@{/admin-buses}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Optional: Include Bootstrap JS and dependencies (for features like dropdowns) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

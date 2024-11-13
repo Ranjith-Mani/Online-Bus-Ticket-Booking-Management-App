@@ -1,0 +1,7 @@
+ONLINE BUS TICKET BOOKING END POINTS:
+
+
+	> FOR HOME-ENDPOINT : http://localhost:8080/home
+
+
+	> FOR SWAGGER-ENDPOINT : http://localhost:8080/swagger-ui/index.html
